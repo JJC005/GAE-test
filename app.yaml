@@ -1,1 +1,2 @@
 runtime: python37
+gcloud app deploy -v [0.1]
