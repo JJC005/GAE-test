@@ -12,13 +12,13 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import main
+#import main
 
 
-def test_index():
-    main.app.testing = True
-    client = main.app.test_client()
+#def test_index():
+#    main.app.testing = True
+ #   client = main.app.test_client()
 
-    r = client.get('/')
-    assert r.status_code == 200
-    assert 'Hello World' in r.data.decode('utf-8')
+  #  r = client.get('/')
+   # assert r.status_code == 200
+    #assert 'Hello World' in r.data.decode('utf-8')
