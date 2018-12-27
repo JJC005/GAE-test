@@ -8,7 +8,7 @@ app = Flask(__name__)
 @app.route('/')
 #START MY CODE
 def hello():
-    return 'Marlaina, can you see me?'
+    return 'Only Joey should be able to see this'
 
 #END MY CODE
 if __name__ == '__main__':
