@@ -11,8 +11,15 @@ def index():
     return render_template('home.html')
 
 #Will complete for Login page
-@app.route('/login')
+@app.route('/login', methods=['GET', 'POST'])
 def login():
+    if request.method == 'POST':
+        # Get Form Fields
+        username = request.form['username']
+        password_candidate = request.form['password']
+    print unsername
+    print password_candidate
+    
     return render_template('login.html')
 
 # Will complete for Password Reset
