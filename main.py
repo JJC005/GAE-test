@@ -17,8 +17,8 @@ def login():
         # Get Form Fields
         username = request.form['username']
         password_candidate = request.form['password']
-    print unsername
-    print password_candidate
+    print (unsername)
+    print (password_candidate)
     
     return render_template('login.html')
 
