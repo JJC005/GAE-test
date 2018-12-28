@@ -10,10 +10,30 @@ app = Flask(__name__)
 def index():
     return render_template('home.html')
 
-#Will complete for login page
+#Will complete for Login page
 @app.route('/login')
 def login():
-    return 'This is where the login page goes'
+    return render_template('login.html')
+
+# Will complete for Password Reset
+@app.route('/passwordReset')
+def pwReset():
+    return render_template('psReset.html')
+
+# Will complete for League Page. This is the main hub once logged in
+@app.route('/league')
+def league():
+    return render_template('league.html')
+
+# Will complete for Tier Details. This will be linked from the appropriate tier, based on tier # and squad
+@app.route('/tierDetails')
+def tierDetails():
+    return render_template('tierDetails.html')
+
+# Will complete for Drop/Add. This will be linked from the appropriate tier, squad
+@app.route('/dropAdd')
+def dropAdd():
+    return render_template('dropAdd.html')
 
 # Check if user logged in
 #def is_logged_in(f):
