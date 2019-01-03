@@ -1,4 +1,4 @@
-from flask import Flask, render_template, flash, redirect, url_for, session, request, logging
+from flask import Flask, render_template, flash, redirect, url_for, session, request, logging, abort
 #from wtforms import Form, StringField, TextAreaField, PasswordField, validators
 #from passlib.hash import sha256_crypt
 #from functools import wraps
@@ -11,9 +11,22 @@ def index():
     return render_template('home.html')
 
 #Will complete for Login page
-@app.route('/login')
-def login():
-    return render_template('login.html')
+@app.route('/login', methods=['POST'])
+def do_login():
+ 
+POST_USERNAME = str(request.form['username'])
+POST_PASSWORD = str(request.form['password'])
+ 
+Session = sessionmaker(bind=engine)
+s = Session()
+query = s.query(User).filter(User.username.in_([POST_USERNAME]), User.password.in_([POST_PASSWORD]) )
+result = query.first()
+if result:
+session['logged_in'] = True
+else:
+flash('wrong password!')
+return home()
+#End do_login
 
 # Will complete for Password Reset
 @app.route('/passwordReset')
