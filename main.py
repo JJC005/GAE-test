@@ -1,8 +1,14 @@
 from flask import Flask, render_template, flash, redirect, url_for, session, request, logging, abort
+from gcloud import datastore
+import datetime
 #from wtforms import Form, StringField, TextAreaField, PasswordField, validators
 #from passlib.hash import sha256_crypt
 #from functools import wraps
 app = Flask(__name__)
+
+#sets up Google DataStore
+projectID = "mls-fantasy-226700"
+client = datastore.Client.from_service_account_json( json_credentials_path="key.json", dataset_id=projectID )
 
 #START MY CODE*****************************************************************************************************************************
 # Index
@@ -19,8 +25,11 @@ POST_PASSWORD = str(request.form['password'])
  
 Session = sessionmaker(bind=engine)
 s = Session()
-query = s.query(User).filter(User.username.in_([POST_USERNAME]), User.password.in_([POST_PASSWORD]) )
-result = query.first()
+loginQuery = client.query(kind='Users')
+username_key = client.key('Users',POST_USERNAME)
+query.key_filter(username_key,'=')
+
+
 if result:
 session['logged_in'] = True
 else:
