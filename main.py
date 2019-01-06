@@ -26,14 +26,16 @@ POST_PASSWORD = str(request.form['password'])
 Session = sessionmaker(bind=engine)
 s = Session()
 loginQuery = client.query(kind='Users')
-username_key = client.key('Users',POST_USERNAME)
-query.key_filter(username_key,'=')
-
-
-if result:
-session['logged_in'] = True
+loginQuery.key_filter(Usernames,'=',POST_USERNAME)
+if(loginQuery = null):
+    flash('Username exists!')
 else:
-flash('wrong password!')
+    flash('Username does not exists!')
+
+#if result:
+#session['logged_in'] = True
+#else:
+#flash('wrong password!')
 return home()
 #End do_login
 
